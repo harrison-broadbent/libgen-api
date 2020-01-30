@@ -10,6 +10,7 @@ libgenapi = "*"
 httplib2 = "*"
 beautifulsoup4 = "*"
 numpy = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,3 +1,5 @@
 # Files
-
 *.txt
+
+# Folders
+.vscode
