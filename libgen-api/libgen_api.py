@@ -1,4 +1,3 @@
-# TODO: format ouput data better
 # TODO: encapsulate everything in a class and turn into a library
 
 import requests

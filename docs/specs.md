@@ -33,3 +33,4 @@ _ Only the first page of results (max. 25) 	will be returned.
 - Specify libgen url domains to use (incase one goes down)
 - Filter by language, type etc. 
 - Detect how many pages of results there are and search them all. 
+- May cast types directly (string to int for ID etc. ), however assuming everything is strings seems easier. 
