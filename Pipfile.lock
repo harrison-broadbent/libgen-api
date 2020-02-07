@@ -83,10 +83,10 @@
         },
         "libgen-api": {
             "hashes": [
-                "sha256:146aa97d6393d64f30e55af872259b7dd5436b89f7f218e3c8ab94f668af9bc2"
+                "sha256:f716c089f767c00dfb3e81ab9c44d6f377a5012653ccfcd67c2655dbc9174189"
             ],
             "index": "pypi",
-            "version": "==0.2.2"
+            "version": "==0.2.3"
         },
         "lxml": {
             "hashes": [
