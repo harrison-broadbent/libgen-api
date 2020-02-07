@@ -1,4 +1,3 @@
-import libgen_api_helpers
 import requests
 from bs4 import BeautifulSoup
 
@@ -18,6 +17,11 @@ class SearchRequest:
 		self.query = query
 		self.search_type = search_type
 
+	def strip_i_tag_from_soup(self, soup):
+		subheadings = soup.find_all("i")
+		for subheading in subheadings:
+			subheading.decompose()
+
 	def get_search_page(self):
 		query_parsed = "%20".join(self.query.split(" "))
 		if self.search_type.lower() == 'title':
@@ -30,7 +34,7 @@ class SearchRequest:
 	def aggregate_request_data(self):
 		search_page = self.get_search_page()
 		soup = BeautifulSoup(search_page.text, 'lxml')
-		libgen_api_helpers.strip_i_tag_from_soup(soup)
+		self.strip_i_tag_from_soup(soup)
 
 		# Libgen results contain 3 tables 
 		# Table2: Table of data to scrape.

@@ -1,5 +1,4 @@
-import search_request as sr
-
+from .search_request import SearchRequest
 import requests
 from bs4 import BeautifulSoup
 
@@ -12,13 +11,13 @@ class LibgenSearch:
 		self.query = query
 		self.language = language
 		self.file_format = file_format
-		self.search_request = sr.SearchRequest(query, search_type="title")
+		self.search_request = SearchRequest(query, search_type="title")
 		return self.search_request.aggregate_request_data()
 
 	def search_author(self, query, language="", file_format=""):
 		self.query = query
 		self.language = language
 		self.file_format = file_format
-		self.search_request = sr.SearchRequest(query, search_type="author")
+		self.search_request = SearchRequest(query, search_type="author")
 		return self.search_request.aggregate_request_data()
 
