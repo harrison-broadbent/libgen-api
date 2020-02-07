@@ -1,6 +1,7 @@
 # Files
 *.txt
-settings.json
+*.json
+.DS_Store
 
 # Folders
 .vscode/

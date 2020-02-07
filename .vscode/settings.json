@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/harrisonbroadbent/.local/share/virtualenvs/goodreads_book_pirating-jrRuYsPF/bin/python"
+    "python.pythonPath": "/Users/harrisonbroadbent/.local/share/virtualenvs/goodreads_book_pirating-jrRuYsPF/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true
 }

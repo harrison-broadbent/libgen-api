@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: libgen-api
+Version: 0.1.0
+Summary: Search Library genesis by Title or Author
+Home-page: https://github.com/harrison-broadbent/libgen-search-api
+Author: Harrison Broadbent
+Author-email: harrisonbroadbent@gmail.com
+License: MIT
+Download-URL: https://github.com/harrison-broadbent/libgen-api/archive/v0.1.0.tar.gz
+Description: # LibGen Search API
+         - Only grabs the first page of results (max 25)
+         - Also not an API (yet), but seems to function better than some other stuff avaliable. 
+        
+         Check out the Design / Todo doc. [here](docs/specs.md)
+Keywords: libgen search,libgen api,search libgen,search library genesis
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3

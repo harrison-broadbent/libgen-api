@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-libgenapi = "*"
-httplib2 = "*"
-beautifulsoup4 = "*"
-numpy = "*"
 bs4 = "*"
+requests = "*"
+twine = "*"
+wheel = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
