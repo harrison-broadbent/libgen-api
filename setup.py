@@ -4,13 +4,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='libgenAPI',
-    packages=['libgenAPI'],
-    version='0.2.1',
+    name='libgen_api',
+    packages=['libgen_api'],
+    version='0.2.2',
     description='Search Library genesis by Title or Author',
 	long_description=long_description,
     url='https://github.com/harrison-broadbent/libgen-search-api',
-    download_url='https://github.com/harrison-broadbent/libgen-api/archive/v0.2.0.tar.gz',
+    download_url='https://github.com/harrison-broadbent/libgen-api/archive/v0.2.2.tar.gz',
     author='Harrison Broadbent',
     author_email='harrisonbroadbent@gmail.com',
     license='MIT',
