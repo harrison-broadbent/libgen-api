@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "be7c3ece1ba80dbc89229b8c4c48a7056f215e9a1b0c3beffd836635d78cb867"
+            "sha256": "00191d9268360457466b9e1f2b3dc53b2fe064e2d352b9375b6975e72411a17a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -80,6 +80,13 @@
                 "sha256:24ae23ab2d6adc59138339e56843e33ec7b0a6b2f06302662477085c6c0aca00"
             ],
             "version": "==21.1.0"
+        },
+        "libgen-api": {
+            "hashes": [
+                "sha256:e3d15f510d606192659ad1d2731f7ed1533cb2855d9cce2f212ae77e25647bba"
+            ],
+            "index": "pypi",
+            "version": "==0.2.0"
         },
         "lxml": {
             "hashes": [

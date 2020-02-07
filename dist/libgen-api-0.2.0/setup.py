@@ -4,9 +4,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='libgenAPI',
-    packages=['libgenAPI'],
-    version='0.2.1',
+    name='libgen-api',
+    packages=['libgen-api'],
+    version='0.2.0',
     description='Search Library genesis by Title or Author',
 	long_description=long_description,
     url='https://github.com/harrison-broadbent/libgen-search-api',

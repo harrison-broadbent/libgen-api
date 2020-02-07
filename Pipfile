@@ -11,6 +11,7 @@ requests = "*"
 twine = "*"
 wheel = "*"
 lxml = "*"
+libgen-api = "*"
 
 [requires]
 python_version = "3.7"
