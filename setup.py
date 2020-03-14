@@ -8,6 +8,7 @@ setuptools.setup(
     packages=['libgen_api'],
     version='0.3.0',
     description='Search Library genesis by Title or Author',
+    long_description_content_type='text/markdown',
 	long_description=long_description,
     url='https://github.com/harrison-broadbent/libgen-api',
     download_url='https://github.com/harrison-broadbent/libgen-api/archive/v0.3.0.tar.gz',
