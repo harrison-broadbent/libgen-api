@@ -53,8 +53,3 @@ class SearchRequest:
 
 		output_data = [ dict(zip(self.col_names, row))  for row in raw_data ]
 		return output_data
-
-
-# STUBS
-	def filter_request(self, language = "", file_type = ""):
-		pass
