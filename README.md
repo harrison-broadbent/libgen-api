@@ -1,5 +1,7 @@
 # LibGen Search API
 
+Please ⭐ if you find this useful!
+
 Four main search methods: 
 	
 	search_title("title")
