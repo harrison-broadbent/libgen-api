@@ -1,6 +1,8 @@
 # LibGen Search API
+___
 
 Please ⭐ if you find this useful!
+___
 
 Four main search methods: 
 	
