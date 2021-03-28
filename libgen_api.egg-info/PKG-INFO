@@ -1,107 +1,198 @@
 Metadata-Version: 2.1
 Name: libgen-api
-Version: 0.3.0
+Version: 0.4.0
 Summary: Search Library genesis by Title or Author
 Home-page: https://github.com/harrison-broadbent/libgen-api
 Author: Harrison Broadbent
 Author-email: mail@harrisonbroadbent.com
 License: MIT
-Download-URL: https://github.com/harrison-broadbent/libgen-api/archive/v0.3.0.tar.gz
+Download-URL: https://github.com/harrison-broadbent/libgen-api/archive/v0.4.0.tar.gz
 Description: # LibGen Search API
         
-        Four main search methods: 
-        	
-        	search_title("title")
-        	search_title_filtered("title", filters)
-        	
-        	search_author("author")
-        	search_author_filtered("author", filters)
+        Search Library Genesis using this Python library.
+        
+        Allows you to search by title or author, and to optionally filter results.
+        
+        ![PyPI - Downloads](https://img.shields.io/pypi/dm/libgen-api?style=for-the-badge)
+        ![GitHub](https://img.shields.io/github/license/harrison-broadbent/libgen-api?style=for-the-badge)
+        ![PyPI](https://img.shields.io/pypi/v/libgen-api?style=for-the-badge)
+        ![GitHub Repo stars](https://img.shields.io/github/stars/harrison-broadbent/libgen-api?style=for-the-badge)
+        
+        ## Contents
+        
+        - [Getting Started](#getting-started)
+        - [Basic Searching](#basic-searching)
+        - [Filtered Searching](#filtered-searching)
+          - [Filter Fields](#filter-fields)
+          - [Filtered Title Searching](#filtered-title-searching)
+          - [Filtered Author Searching](#filtered-author-searching)
+          - [Non-exact Filtered Searching](#non-exact-filtered-searching)
+        - [More Examples](#more-examples)
+        - [Further Information](#further-information)
+        - [Contributors](#contributors)
+        
+        ---
+        
+        Please ⭐ if you find this useful!
+        
+        ---
+        
+        ## Getting Started
+        
+        Install the package -
+        
+        ```
+        pip install libgen-api
+        ```
+        
+        Perform a basic search -
+        
+        ```python
+        from libgen_api import LibgenSearch
+        s = LibgenSearch()
+        results = s.search_title("Pride and Prejudice")
+        print(results)
+        ```
+        
+        Check out the [results layout](#results-layout) to see how the results data is formatted.
         
         ## Basic Searching:
         
-        - Search by title or author - 
+        Search by title or author:
         
-        	### Title:
+        ### Title:
         
-        			from libgen_api import LibgenSearch
-        			s = LibgenSearch()
-        			title = "some title"
+        ```python
+        from libgen_api import LibgenSearch
+        s = LibgenSearch()
+        results = s.search_title("Pride and Prejudice")
+        print(results)
+        ```
         
-        			s.search_title(title)
+        ### Author:
         
-        	### Author:
-        
-        		from libgen_api import LibgenSearch
-        		s = LibgenSearch()
-        		author = "some author"
-        
-        		s.search_author(author)
+        ```python
+        from libgen_api import LibgenSearch
+        s = LibgenSearch()
+        results = s.search_author("Jane Austen")
+        print(results)
+        ```
         
         ## Filtered Searching
         
+        Skip to the [Examples](#filtered-title-searching)
+        
         - You can define a set of filters, and then use them to filter search results for both title and author searches.
-        - You can filter results by any combination of the values from a search.
-        - Filtering will remove results that do not match the filters exactly - filters are case sensitive, and for numerical values (ID, Pages etc. ) the given value, as a string, must match exactly. 
+        - You can filter results by any combination of the fields returned from a search.
+        - By default, filtering will remove results that do not match the filters exactly -
+          - This can be adjusted by setting `exact_match=False` when calling one of the filter methods.
+          - Filters are case-sensitive, and for numerical values (ID, Pages etc. ) the given value, of type string, must match exactly.
+        - Case-insensitive and substring filtering can be specified by passing `exact_match=False` as an argument.
         
-        	### Filtered Title Searching
+        ### Filter Fields
         
-        		filters = {
-        			"Author" 	: "Name",
-        			"Extension"	: "pdf"
-        		}
+        You can filter against any of the Library Genesis column names, which are given as -
         
-        		from libgen_api import LibgenSearch
-        		s = LibgenSearch()
-        		title = "some title"
-        		s.search_title_filtered(title, filters)
+        ```python
+        col_names = [
+                "ID",
+                "Author",
+                "Title",
+                "Publisher",
+                "Year",
+                "Pages",
+                "Language",
+                "Size",
+                "Extension",
+                "Mirror_1",
+                "Mirror_2",
+                "Mirror_3",
+                "Mirror_4",
+                "Mirror_5",
+                "Edit",
+            ]
+        ```
         
-        	### Filtered Author Searching
+        ### Filtered Title Searching
         
-        		filters = {
-        			"Year" 		: "2002",
-        			"Extension"	: "mobi",
-        			"Pages"		: "321"
-        		}
+        ```python
+        from libgen_api import LibgenSearch
         
-        		from libgen_api import LibgenSearch
-        		s = LibgenSearch()
-        		author = "some author"
-        		s.search_author_filtered(author, filters)
+        tf = LibgenSearch()
+        title_filters = {"Year": "2007", "Extension": "epub"}
+        titles = tf.search_title_filtered("Pride and Prejudice", title_filters, exact_match=True)
+        print_results(titles)
+        ```
+        
+        ### Filtered Author Searching
+        
+        ```python
+        from libgen_api import LibgenSearch
+        
+        af = LibgenSearch()
+        author_filters = {"Language": "German", "Year": "2009"}
+        titles = af.search_author_filtered("Agatha Christie", author_filters, exact_match=True)
+        print_results(titles)
+        ```
+        
+        ### Non-exact Filtered Searching
+        
+        ```python
+        from libgen_api import LibgenSearch
+        
+        ne_af = LibgenSearch()
+        partial_filters = {"Year": "200"}
+        titles = ne_af.search_author_filtered("Agatha Christie", partial_filters, exact_match=False)
+        print_results(titles)
+        ```
+        
+        ### More Examples
+        
+        See the [testing file](test.py) for more examples.
         
         ## Results Layout
         
-            [
-            	{
-            		'ID'		: 'ID',
-            		'Author'	: 'Author',
-            		'Title'		: 'Title',
-            		'Publisher'	: 'Name',
-            		'Year'		: 'Year',
-            		'Pages'		: 'Pages',
-            		'Language'	: 'Lang',
-            		'Size'		: 'X',
-            		'Extension'	: 'Extension',
-            		'Mirror_1'	: 'URL1',
-            		'Mirror_2'	: 'URL2',
-            		'Mirror_3'	: 'URL3',
-            		'Mirror_4'	: 'URL4',
-            		'Mirror_5'	: 'URL5',
-            		'Edit'		: 'edit_URL'
+        Results are returned as a list of dictionaries:
         
-            	},
-            	{
-            		...,
-            		...,
-            		...
-            	},
-            	...
-            ]
+        ```json
+        [
+          {
+            "Author": "John Smith",
+            "Edit": "http://example.com",
+            "Extension": "epub",
+            "ID": "00000",
+            "Language": "German",
+            "Mirror_1": "http://example.com",
+            "Mirror_2": "http://example.com",
+            "Mirror_3": "http://example.com",
+            "Mirror_4": "http://example.com",
+            "Mirror_5": "http://example.com",
+            "Pages": "410",
+            "Publisher": "Publisher",
+            "Size": "1005 Kb",
+            "Title": "Title",
+            "Year": "2021"
+          }
+        ]
+        ```
         
-        If there are no results, the library will return an empty array.
+        ## Further information
         
-            []
+        - If there are no results, the library will return an empty array.
+        - All fields are strings
+        - If a value is not present, the field will contain an empty string
+        - Some listings will have page count listed in the form of "count[secondary-count]" as this is how they appear on LibGen.
+        - Only the first page of results (max. 25) will be returned.
         
-        Check out the Design / Todo doc. [here](docs/specs.md)
+        ## Contributors
+        
+        A massive thank you to those that have contributed to this project!
+        
+        Please don't hesitate to raise an issue, or fork this project and improve on it.
+        
+        Specific thanks to -
+        
+        - [calmoo](https://github.com/calmoo)
         
 Keywords: libgen search,libgen api,search libgen,search library genesis
 Platform: UNKNOWN

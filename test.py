@@ -9,7 +9,7 @@ python3 test.py
 """
 
 
-from libgen_API.libgen_search import LibgenSearch
+from libgen_api.libgen_search import LibgenSearch
 import json
 
 title = "Pride and Prejudice"
