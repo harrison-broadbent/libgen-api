@@ -136,6 +136,29 @@ partial_filters = {"Year": "200"}
 titles = ne_af.search_author_filtered("Agatha Christie", partial_filters, exact_match=False)
 print_results(titles)
 ```
+### Resolving mirror links
+The mirror links returned in the results are not direct download links and do not resolve to a downloadable
+URL without further parsing. Generally, the `Mirror_1` link in the results contains the most useful download URLs, so
+this is used by the `resolve_download_links` helper method. This method takes a single dictionary from the results and 
+returns a dictionary of all the download links for `Mirror_1`:
+```python
+from libgen_api import LibgenSearch
+s = LibgenSearch()
+results = s.search_author("Jane Austen")
+item_to_download = results[0]
+download_links = s.resolve_download_links(item_to_download)
+print(download_links)
+```
+
+Example output:
+```json
+{
+  "GET": "http://example.com/file.epub",
+  "Cloudflare": "http://example.com/file.epub",
+  "IPFS.io": "http://example.com/file.epub",
+  "Infura": "http://example.com/file.epub",
+}
+```
 
 ### More Examples
 
