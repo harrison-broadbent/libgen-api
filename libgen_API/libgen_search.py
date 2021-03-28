@@ -28,14 +28,19 @@ class LibgenSearch:
 
 
 def filter_results(results, filters, exact_match):
+
     """
-    Returns a list of results that satisfy the given filter criteria.
-    When exact_match is true, it is checked if the filters are a subset of the results dict.
-    When exact-match is false, a case-insensitive partial string match is performed iteratively.
+    Returns a list of results that match the given filter criteria.
+    When exact_match = true, we only include results that exactly match the filters (ie. the filters are an exact subset of the result).
+    When exact-match = false, we run a case-insensitive check between each filter field and each result.
+
+    exact_match defaults to TRUE - this is to maintain consistency with older versions of this library.
     """
+
     filtered_list = []
     if exact_match:
         for result in results:
+            # check whether a candidate result matches the given filters
             if filters.items() <= result.items():
                 filtered_list.append(result)
 
