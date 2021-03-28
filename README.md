@@ -18,6 +18,7 @@ Allows you to search by title or author, and to optionally filter results.
   - [Filtered Title Searching](#filtered-title-searching)
   - [Filtered Author Searching](#filtered-author-searching)
   - [Non-exact Filtered Searching](#non-exact-filtered-searching)
+- [Resolving mirror links](#resolving-mirror-links)
 - [More Examples](#more-examples)
 - [Further Information](#further-information)
 - [Contributors](#contributors)
@@ -112,7 +113,7 @@ from libgen_api import LibgenSearch
 tf = LibgenSearch()
 title_filters = {"Year": "2007", "Extension": "epub"}
 titles = tf.search_title_filtered("Pride and Prejudice", title_filters, exact_match=True)
-print_results(titles)
+print(titles)
 ```
 
 ### Filtered Author Searching
@@ -123,7 +124,7 @@ from libgen_api import LibgenSearch
 af = LibgenSearch()
 author_filters = {"Language": "German", "Year": "2009"}
 titles = af.search_author_filtered("Agatha Christie", author_filters, exact_match=True)
-print_results(titles)
+print(titles)
 ```
 
 ### Non-exact Filtered Searching
@@ -134,9 +135,11 @@ from libgen_api import LibgenSearch
 ne_af = LibgenSearch()
 partial_filters = {"Year": "200"}
 titles = ne_af.search_author_filtered("Agatha Christie", partial_filters, exact_match=False)
-print_results(titles)
+print(titles)
 ```
-### Resolving mirror links
+
+## Resolving mirror links
+
 The mirror links returned in the results are not direct download links and do not resolve to a downloadable
 URL without further parsing. Generally, the `Mirror_1` link in the results contains the most useful download URLs, so
 this is used by the `resolve_download_links` helper method. This method takes a single dictionary from the results and 
