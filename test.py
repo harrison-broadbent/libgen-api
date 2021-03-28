@@ -1,3 +1,14 @@
+"""
+
+Basic testing script for libgen-api.
+Runs through a number of searches using different parameters, outputs results to terminal.
+
+Run - 
+python3 test.py
+
+"""
+
+
 from libgen_API.libgen_search import LibgenSearch
 import json
 
