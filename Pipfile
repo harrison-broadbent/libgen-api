@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+black = "*"
 
 [packages]
 bs4 = "*"
@@ -12,6 +13,10 @@ twine = "*"
 wheel = "*"
 lxml = "*"
 libgen-api = "*"
+black = "*"
 
 [requires]
 python_version = "3"
+
+[pipenv]
+allow_prereleases = true

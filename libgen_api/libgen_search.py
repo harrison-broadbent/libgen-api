@@ -35,7 +35,7 @@ class LibgenSearch:
         page = requests.get(mirror_1)
         soup = BeautifulSoup(page.text, "html.parser")
         links = soup.find_all("a", string=MIRROR_SOURCES)
-        download_links = {link.string: link['href'] for link in links}
+        download_links = {link.string: link["href"] for link in links}
         return download_links
 
 

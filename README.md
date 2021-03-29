@@ -140,10 +140,16 @@ print(titles)
 
 ## Resolving mirror links
 
-The mirror links returned in the results are not direct download links and do not resolve to a downloadable
-URL without further parsing. Generally, the `Mirror_1` link in the results contains the most useful download URLs, so
-this is used by the `resolve_download_links` helper method. This method takes a single dictionary from the results and 
-returns a dictionary of all the download links for `Mirror_1`:
+The mirror links returned in the results (ie. by running search_author() or search_title()) are not direct download links and do not resolve to a downloadable URL without further parsing.
+
+An additional method, `resolve_download_links()`, can be to resolve the mirror links of a search item into direct download links.
+
+Generally, the `Mirror_1` link in the results contains the most useful download URLs, so
+this is used by the `resolve_download_links` helper method.
+
+This method accepts a single result (type: dictionary) from the array of searched results, and
+returns a dictionary of all the download links for `Mirror_1` (each mirror link has up to 4 download links):
+
 ```python
 from libgen_api import LibgenSearch
 s = LibgenSearch()
@@ -154,12 +160,13 @@ print(download_links)
 ```
 
 Example output:
+
 ```json
 {
   "GET": "http://example.com/file.epub",
   "Cloudflare": "http://example.com/file.epub",
   "IPFS.io": "http://example.com/file.epub",
-  "Infura": "http://example.com/file.epub",
+  "Infura": "http://example.com/file.epub"
 }
 ```
 
