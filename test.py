@@ -17,7 +17,7 @@ author = "Agatha Christie"
 
 # helper function to print first title if it exists.
 def print_results(titles_array):
-    print(json.dumps(titles[0], indent=1) if len(titles) else "No results.")
+    print(json.dumps(titles_array[0], indent=1) if len(titles_array) else "No results.")
     print("\n\n--- END OF OUTPUT ---\n\n")
 
 
@@ -115,7 +115,7 @@ tfpne = LibgenSearch()
 partial_filters = {"Extension": "p", "Year": "200"}
 print(
     "\n>>>\tSearching for title: "
-    + author
+    + title
     + " with filters --- "
     + ", ".join([":".join(i) for i in partial_filters.items()])
     + " & exact_match == False"
@@ -131,7 +131,7 @@ tfpe = LibgenSearch()
 exact_partial_filters = {"Extension": "p"}
 print(
     "\n>>>\tSearching for title: "
-    + author
+    + title
     + " with filters --- "
     + ", ".join([":".join(i) for i in exact_partial_filters.items()])
     + " & exact_match == True"
@@ -139,3 +139,14 @@ print(
 
 titles = tfpe.search_title_filtered(title, exact_partial_filters, exact_match=True)
 print_results(titles)
+
+
+# test resolving of mirror links
+# should print a populated hash of source:download_link pairs
+arml = LibgenSearch()
+print("\n>>>\tSearching for title: " + title + " and resolving download links")
+
+titles = arml.search_author("Jane Austen")
+item_to_download = titles[0]
+download_links = arml.resolve_download_links(item_to_download)
+print_results([download_links])

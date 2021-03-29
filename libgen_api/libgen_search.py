@@ -1,4 +1,8 @@
 from .search_request import SearchRequest
+import requests
+from bs4 import BeautifulSoup
+
+MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Infura"]
 
 
 class LibgenSearch:
@@ -26,9 +30,16 @@ class LibgenSearch:
         )
         return filtered_results
 
+    def resolve_download_links(self, item):
+        mirror_1 = item["Mirror_1"]
+        page = requests.get(mirror_1)
+        soup = BeautifulSoup(page.text, "html.parser")
+        links = soup.find_all("a", string=MIRROR_SOURCES)
+        download_links = {link.string: link["href"] for link in links}
+        return download_links
+
 
 def filter_results(results, filters, exact_match):
-
     """
     Returns a list of results that match the given filter criteria.
     When exact_match = true, we only include results that exactly match the filters (ie. the filters are an exact subset of the result).
