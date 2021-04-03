@@ -1,8 +1,11 @@
-# libgen-api ![PyPI - Downloads](https://img.shields.io/pypi/dm/libgen-api?style=plastic) ![GitHub](https://img.shields.io/github/license/harrison-broadbent/libgen-api?style=plastic) ![PyPI](https://img.shields.io/pypi/v/libgen-api?style=plastic) ![GitHub Repo stars](https://img.shields.io/github/stars/harrison-broadbent/libgen-api?style=plastic)
-
 <div align="center">
 
 ![logo](logo.png)
+
+![PyPI - Downloads](https://img.shields.io/pypi/dm/libgen-api?style=plastic)
+![GitHub](https://img.shields.io/github/license/harrison-broadbent/libgen-api?style=plastic)
+![PyPI](https://img.shields.io/pypi/v/libgen-api?style=plastic)
+![GitHub Repo stars](https://img.shields.io/github/stars/harrison-broadbent/libgen-api?style=plastic)
 
 </div>
 
