@@ -21,6 +21,7 @@ Allows you to search by title or author, and to optionally filter results.
 - [Resolving mirror links](#resolving-mirror-links)
 - [More Examples](#more-examples)
 - [Further Information](#further-information)
+- [Testing](#testing)
 - [Contributors](#contributors)
 
 ---
@@ -207,6 +208,19 @@ Results are returned as a list of dictionaries:
 - If a value is not present, the field will contain an empty string
 - Some listings will have page count listed in the form of "count[secondary-count]" as this is how they appear on LibGen.
 - Only the first page of results (max. 25) will be returned.
+
+## Testing
+
+libgen-api uses Pytest to run unit tests.
+
+To run the tests -
+
+- Clone this repo with -
+  - `git clone https://github.com/harrison-broadbent/libgen-api.git && cd libgen-api`
+- Install dependencies with -
+  - `pip install`
+- Run tests with -
+  - `pytest`
 
 ## Contributors
 

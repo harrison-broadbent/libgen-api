@@ -12,8 +12,9 @@ requests = "*"
 twine = "*"
 wheel = "*"
 lxml = "*"
-libgen-api = "*"
 black = "*"
+libgen-api = "*"
+pytest = "*"
 
 [requires]
 python_version = "3"
