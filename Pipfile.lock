@@ -155,16 +155,17 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:036eae7ebbd41db176774c42e80f3288a1e41c7ebfc8ed099a94653973ebd00f",
-                "sha256:6fd684b4c6c7bb36d57e93d57fc244b5ffc08faa1c298bcda3dfbbbf19d7550a"
+                "sha256:c9db46394197244adf2f0b08ec5bc3cf16757e9590b02af1fca085c16c0d600a",
+                "sha256:d2d46ef77ffc85cbf7dac7e81dd663fde71c45326131bea8033b9bad42268ebe"
             ],
-            "version": "==3.9.0"
+            "version": "==3.10.0"
         },
         "jeepney": {
             "hashes": [
                 "sha256:7d59b6622675ca9e993a6bd38de845051d315f8b0c72cca3aef733a20b648657",
                 "sha256:aec56c0eb1691a841795111e184e13cad504f7703b9a64f63020816afa79a8ae"
             ],
+            "markers": "sys_platform == 'linux'",
             "version": "==0.6.0"
         },
         "keyring": {
@@ -176,11 +177,11 @@
         },
         "libgen-api": {
             "hashes": [
-                "sha256:3d849fdc95787adb31794b4dce97c9e645f0d54f642ee26bfe4c28e9b8fa628f",
-                "sha256:d301f1704141b12c51727243aeaf4a0336591a25b8fb908ff28cc6fcd83b6b87"
+                "sha256:087a9898fec4bbcf8d5267e370c9a24e4038b5a2a16b76b59484b34c53f2d75a",
+                "sha256:d9c0baed967f5bed4d9dea62db6fdc95ad78be33db90dcafa473c65cf88d9962"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.5.0"
         },
         "lxml": {
             "hashes": [

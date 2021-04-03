@@ -146,6 +146,7 @@ print_results(titles)
 arml = LibgenSearch()
 print("\n>>>\tSearching for title: " + title + " and resolving download links")
 
+# Author hard-coded so that it pairs with title (currently pride and prejudice)
 titles = arml.search_author("Jane Austen")
 item_to_download = titles[0]
 download_links = arml.resolve_download_links(item_to_download)
