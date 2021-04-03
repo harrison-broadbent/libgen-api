@@ -1,13 +1,21 @@
+<div align="center">
+
 # LibGen Search API
 
-Search Library Genesis using this Python library.
+![logo](logo.png)
 
-Allows you to search by title or author, and to optionally filter results.
+![PyPI - Downloads](https://img.shields.io/pypi/dm/libgen-api?style=plastic)
+![GitHub](https://img.shields.io/github/license/harrison-broadbent/libgen-api?style=plastic)
+![PyPI](https://img.shields.io/pypi/v/libgen-api?style=plastic)
+![GitHub Repo stars](https://img.shields.io/github/stars/harrison-broadbent/libgen-api?style=plastic)
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/libgen-api?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/harrison-broadbent/libgen-api?style=for-the-badge)
-![PyPI](https://img.shields.io/pypi/v/libgen-api?style=for-the-badge)
-![GitHub Repo stars](https://img.shields.io/github/stars/harrison-broadbent/libgen-api?style=for-the-badge)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
+</div>
+
+Search Library Genesis programmatically using a simple Python library.
+
+Allows you to search Library Genesis by title or author, filter results, and resolve download links.
 
 ## Contents
 
