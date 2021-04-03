@@ -2,8 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 
 # WHY
-# this SearchRequest module is used to contain all of the internal logic that end users will not need to use.
-# Therefore the logic is contained and users can interact with libgen_search without extra junk for logic.
+# The SearchRequest module contains all the internal logic for the library.
+#
+# This encapsulates the logic,
+# ensuring users can work at a higher level of abstraction.
 
 # USAGE
 # req = search_request.SearchRequest("[QUERY]", search_type="[title]")
@@ -60,8 +62,10 @@ class SearchRequest:
         # Table2: Table of data to scrape.
         information_table = soup.find_all("table")[2]
 
-        # Determines whether the link url (for the mirror) or link text (for the title) should be preserved.
-        # Both the book title and mirror links have a "title" attribute, but only the mirror links have it filled. (title vs title="libgen.io")
+        # Determines whether the link url (for the mirror)
+        # or link text (for the title) should be preserved.
+        # Both the book title and mirror links have a "title" attribute,
+        # but only the mirror links have it filled.(title vs title="libgen.io")
         raw_data = [
             [
                 td.a["href"]

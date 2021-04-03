@@ -1,5 +1,4 @@
 from libgen_api.libgen_search import LibgenSearch
-import json
 
 title = "Pride and Prejudice"
 author = "Agatha Christie"
@@ -85,20 +84,22 @@ class TestBasicSearching:
         )
 
 
-##########################
-#### Helper Functions ####
-##########################
+####################
+# Helper Functions #
+####################
 
 # Check object fields for equality -
 # -> Returns True if they match.
 # -> Returns False otherwise.
 #
 # when exact-True, fields are checked strictly (==).
-# when exact=False, fields are normalized to lower case, and checked whether filter value is a subset of the response.
+#
+# when exact=False, fields are normalized to lower case,
+# and checked whether filter value is a subset of the response.
 def fields_match(filter_obj, response_obj, exact=True):
     for key, value in filter_obj.items():
 
-        if exact == False:
+        if exact is False:
             value = value.lower()
             response_obj[key] = response_obj[key].lower()
             if value not in response_obj[key]:
