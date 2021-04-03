@@ -3,7 +3,7 @@
 Basic testing script for libgen-api.
 Runs through a number of searches using different parameters, outputs results to terminal.
 
-Run - 
+Run -
 python3 test.py
 
 """
@@ -14,6 +14,7 @@ import json
 
 title = "Pride and Prejudice"
 author = "Agatha Christie"
+
 
 # helper function to print first title if it exists.
 def print_results(titles_array):
@@ -76,7 +77,7 @@ print_results(titles)
 afe = LibgenSearch()
 exact_filters = {
     "Extension": "PDF"
-}  # if exact_match = True, this will filter out all results as "pdf" is always written lower case on Library Genesis
+}  # if exact_match = True, all results get filtered as "pdf" is always written lower case
 print(
     "\n>>>\tSearching for author: "
     + author
@@ -95,7 +96,7 @@ print_results(titles)
 afne = LibgenSearch()
 non_exact_filters = {
     "Extension": "PDF"
-}  # if exact_match = True, this will filter out all results as "pdf" is always written lower case on Library Genesis
+}  # if exact_match = True, all results get filtered as "pdf" is always written lower case
 print(
     "\n>>>\tSearching for author: "
     + author
