@@ -15,6 +15,7 @@ lxml = "*"
 black = "*"
 libgen-api = "*"
 pytest = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3"
