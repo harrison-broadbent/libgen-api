@@ -81,6 +81,21 @@ results = s.search_author("Jane Austen")
 print(results)
 ```
 
+### Exception Handling
+
+All search methods will raise ValueErrors when given invalid queries (too short, etc).
+
+
+```python
+from libgen_api import LibgenSearch
+s = LibgenSearch()
+try:
+    results = s.search_author(input())
+except ValueError:
+    print("The given query was invalid.")
+print(results)
+```
+
 ## Filtered Searching
 
 Skip to the [Examples](#filtered-title-searching)

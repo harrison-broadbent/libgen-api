@@ -60,7 +60,11 @@ class SearchRequest:
 
         # Libgen results contain 3 tables
         # Table2: Table of data to scrape.
-        information_table = soup.find_all("table")[2]
+
+        try:
+            information_table = soup.find_all("table")[2]
+        except IndexError as exc:
+            raise ValueError('Gave an invalid query.') from exc
 
         # Determines whether the link url (for the mirror)
         # or link text (for the title) should be preserved.
