@@ -50,7 +50,12 @@ class SearchRequest:
             search_url = (
                 f"http://gen.lib.rus.ec/search.php?req={query_parsed}&column=author"
             )
-        search_page = requests.get(search_url)
+
+        try:
+            search_page = requests.get(search_url)
+        except requests.exceptions.RequestException as exc:
+            raise ValueError('Could not establish viable connection to Libgen') from exc
+
         return search_page
 
     def aggregate_request_data(self):
