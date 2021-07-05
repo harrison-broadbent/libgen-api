@@ -84,15 +84,19 @@ print(results)
 ### Exception Handling
 
 All search methods will raise ValueErrors when given invalid queries (too short, etc).
+Handle exceptions:
 
 
 ```python
 from libgen_api import LibgenSearch
+import sys
 s = LibgenSearch()
 try:
     results = s.search_author(input())
 except ValueError:
     print("The given query was invalid.")
+    sys.exit()
+    # Or whatever you prefer
 print(results)
 ```
 
