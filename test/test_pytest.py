@@ -1,11 +1,8 @@
 from libgen_api.libgen_search import LibgenSearch
-from internet_sabotage import no_connection
 title = "Pride and Prejudice"
 author = "Agatha Christie"
 
 ls = LibgenSearch()
-
-
 
 class TestBasicSearching:
     def test_title_search(self):
@@ -96,11 +93,14 @@ class TestBasicSearching:
     def test_no_network(self):
         gotSystemError = False
 
+        # Kill the network 
+
         try:
-            with no_connection():
-                titles = ls.search_author(author)
+            titles = ls.search_author(author)
         except SystemError:
             gotSystemError = True
+
+        # Bring it back up
 
         assert gotSystemError
 
