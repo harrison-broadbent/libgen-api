@@ -83,9 +83,9 @@ print(results)
 
 ### Exception Handling
 
-All search methods will raise ValueErrors when given invalid queries (too short, etc).
-Handle exceptions:
-
+Search methods throw one of two exceptions when something goes wrong:
+A `SystemError`, for connectivity issues.
+A `ValueError`, for queries that Library Genesis considers invalid, such as very short queries.
 
 ```python
 from libgen_api import LibgenSearch
@@ -94,9 +94,10 @@ s = LibgenSearch()
 try:
     results = s.search_author(input())
 except ValueError:
-    print("The given query was invalid.")
-    sys.exit()
-    # Or whatever you prefer
+    # Handle query error
+except SystemError:
+    # Handle network error
+# No exceptions were raised: proceed
 print(results)
 ```
 

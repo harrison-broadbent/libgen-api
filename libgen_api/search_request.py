@@ -54,7 +54,7 @@ class SearchRequest:
         try:
             search_page = requests.get(search_url)
         except requests.exceptions.RequestException as exc:
-            raise ValueError('Could not establish viable connection to Libgen') from exc
+            raise SystemError('could not connect to libgen') from exc
 
         return search_page
 
@@ -69,7 +69,7 @@ class SearchRequest:
         try:
             information_table = soup.find_all("table")[2]
         except IndexError as exc:
-            raise ValueError('Gave an invalid query.') from exc
+            raise ValueError('invalid query') from exc
 
         # Determines whether the link url (for the mirror)
         # or link text (for the title) should be preserved.
