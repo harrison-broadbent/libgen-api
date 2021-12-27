@@ -237,7 +237,7 @@ To run the tests -
   ```
 - ## Install dependencies with -
   ```
-  pip install
+  pip install .
   ```
 - ## Run tests with -
   ```
@@ -250,6 +250,6 @@ A massive thank you to those that have contributed to this project!
 
 Please don't hesitate to raise an issue, or fork this project and improve on it.
 
-Specific thanks to -
+Thanks to the following contributors -
 
 - [calmoo](https://github.com/calmoo)
