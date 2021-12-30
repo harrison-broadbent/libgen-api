@@ -35,6 +35,9 @@ class SearchRequest:
         self.query = query
         self.search_type = search_type
 
+        if len(self.query) < 3:
+            raise Exception("Query is too short")
+
     def strip_i_tag_from_soup(self, soup):
         subheadings = soup.find_all("i")
         for subheading in subheadings:

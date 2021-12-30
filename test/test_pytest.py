@@ -1,3 +1,4 @@
+import pytest
 from libgen_api.libgen_search import LibgenSearch
 
 title = "Pride and Prejudice"
@@ -83,6 +84,10 @@ class TestBasicSearching:
             False not in [len(link) > 0 for key, link in dl_links.items()]
         )
 
+    # should return an error if search query is less than 3 characters long
+    def test_raise_error_on_short_search(self):
+        with pytest.raises(Exception):
+            titles = ls.search_title(title[0:2])
 
 ####################
 # Helper Functions #
