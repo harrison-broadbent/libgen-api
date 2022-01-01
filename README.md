@@ -57,6 +57,8 @@ Check out the [results layout](#results-layout) to see how the results data is f
 
 ## Basic Searching:
 
+**_NOTE_**: All queries must be at least 3 characters long. This is to avoid any errors on the LibGen end (different mirrors have different requirements, but a minimum of 3 characters is the official limit).
+
 Search by title or author:
 
 ### Title:
