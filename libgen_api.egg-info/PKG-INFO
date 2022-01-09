@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: libgen-api
-Version: 0.5.0
+Version: 1.0.0
 Summary: Search Library genesis by Title or Author
 Home-page: https://github.com/harrison-broadbent/libgen-api
 Author: Harrison Broadbent
 Author-email: mail@harrisonbroadbent.com
 License: MIT
-Download-URL: https://github.com/harrison-broadbent/libgen-api/archive/v0.5.0.tar.gz
+Download-URL: https://github.com/harrison-broadbent/libgen-api/archive/v1.0.0.tar.gz
 Description: <div align="center">
         
         ![logo](logo.png)
@@ -65,6 +65,8 @@ Description: <div align="center">
         Check out the [results layout](#results-layout) to see how the results data is formatted.
         
         ## Basic Searching:
+        
+        **_NOTE_**: All queries must be at least 3 characters long. This is to avoid any errors on the LibGen end (different mirrors have different requirements, but a minimum of 3 characters is the official limit).
         
         Search by title or author:
         
