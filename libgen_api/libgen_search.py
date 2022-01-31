@@ -1,6 +1,7 @@
-from .search_request import SearchRequest
 import requests
 from bs4 import BeautifulSoup
+
+from .search_request import SearchRequest
 
 MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Infura"]
 
@@ -51,23 +52,32 @@ def filter_results(results, filters, exact_match):
     exact_match defaults to TRUE -
     this is to maintain consistency with older versions of this library.
     """
-
     filtered_list = []
-    if exact_match:
-        for result in results:
-            # check whether a candidate result matches the given filters
-            if filters.items() <= result.items():
-                filtered_list.append(result)
-
-    else:
-        filter_matches_result = False
-        for result in results:
-            for field, query in filters.items():
-                if query.casefold() in result[field].casefold():
+    filter_matches_result = False
+    for result in results:
+        for field, query in filters.items():
+            if exact_match:
+                if result[field] in query:
                     filter_matches_result = True
                 else:
                     filter_matches_result = False
                     break
-            if filter_matches_result:
-                filtered_list.append(result)
+            else:
+                if type(query) is list:
+                    for item in query:
+                        if item.casefold() in result[field].casefold():
+                            filter_matches_result = True
+                            break
+                        if not filter_matches_result:
+                            break
+                elif (
+                    type(query) is str and query.casefold() in result[field].casefold()
+                ):
+                    filter_matches_result = True
+                else:
+                    filter_matches_result = False
+                    break
+        if filter_matches_result:
+            filtered_list.append(result)
+
     return filtered_list
