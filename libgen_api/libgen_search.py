@@ -68,6 +68,8 @@ def filter_results(results, filters, exact_match):
                         if item.casefold() in result[field].casefold():
                             filter_matches_result = True
                             break
+                        if not filter_matches_result:
+                            break
                 elif (
                     type(query) is str and query.casefold() in result[field].casefold()
                 ):
