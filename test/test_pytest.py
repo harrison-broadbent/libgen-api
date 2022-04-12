@@ -3,6 +3,7 @@ from libgen_api.libgen_search import LibgenSearch
 
 title = "Pride and Prejudice"
 author = "Agatha Christie"
+isbn = "1503290565"
 
 ls = LibgenSearch()
 
@@ -20,6 +21,12 @@ class TestBasicSearching:
 
         assert author in first_result["Author"]
 
+    def test_isbn_search(self):
+        titles = ls.search_isbn(isbn)
+        first_result = titles[0]
+
+        assert isbn in first_result["Identifier"]
+
     def test_title_filtering(self):
         title_filters = {"Year": "2007", "Extension": "epub"}
         titles = ls.search_title_filtered(title, title_filters, exact_match=True)
@@ -36,6 +43,15 @@ class TestBasicSearching:
 
         assert (author in first_result["Author"]) & fields_match(
             author_filters, first_result
+        )
+
+    def test_isbn_filtering(self):
+        isbn_filters = {"Language": "German", "Year": "2009"}
+        titles = ls.search_isbn_filtered(isbn, isbn_filters, exact_match=True)
+        first_result = titles[0]
+
+        assert (isbn in first_result["Identifier"]) & fields_match(
+            isbn_filters, first_result
         )
 
     # explicit test of exact filtering

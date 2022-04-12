@@ -31,6 +31,8 @@ class SearchRequest:
         "Edit",
     ]
 
+    base_url = "http://gen.lib.rus.ec/search.php"
+
     def __init__(self, query, search_type="title"):
         self.query = query
         self.search_type = search_type
@@ -47,11 +49,15 @@ class SearchRequest:
         query_parsed = "%20".join(self.query.split(" "))
         if self.search_type.lower() == "title":
             search_url = (
-                f"http://gen.lib.rus.ec/search.php?req={query_parsed}&column=title"
+                f"{base_url}?req={query_parsed}&column=title"
             )
         elif self.search_type.lower() == "author":
             search_url = (
-                f"http://gen.lib.rus.ec/search.php?req={query_parsed}&column=author"
+                f"{base_url}?req={query_parsed}&column=author"
+            )
+        elif self.search_type.lower() == "isbn":
+            search_url = (
+                f"{base_url}?req={query_parsed}&column=identifier"
             )
         search_page = requests.get(search_url)
         return search_page

@@ -14,6 +14,10 @@ class LibgenSearch:
         search_request = SearchRequest(query, search_type="author")
         return search_request.aggregate_request_data()
 
+    def search_isbn(self, query):
+        search_request = SearchRequest(query, search_type="isbn")
+        return search_request.aggregate_request_data()
+
     def search_title_filtered(self, query, filters, exact_match=True):
         search_request = SearchRequest(query, search_type="title")
         results = search_request.aggregate_request_data()
@@ -24,6 +28,14 @@ class LibgenSearch:
 
     def search_author_filtered(self, query, filters, exact_match=True):
         search_request = SearchRequest(query, search_type="author")
+        results = search_request.aggregate_request_data()
+        filtered_results = filter_results(
+            results=results, filters=filters, exact_match=exact_match
+        )
+        return filtered_results
+
+    def search_isbn_filtered(self, query, filters, exact_match=True):
+        search_request = SearchRequest(query, search_type="isbn")
         results = search_request.aggregate_request_data()
         filtered_results = filter_results(
             results=results, filters=filters, exact_match=exact_match

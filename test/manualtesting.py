@@ -14,6 +14,7 @@ import json
 
 title = "Pride and Prejudice"
 author = "Agatha Christie"
+isbn = "1503290565"
 
 
 # helper function to print first title if it exists.
@@ -37,6 +38,15 @@ a = LibgenSearch()
 print("\n>>>\tSearching for author: " + author)
 
 titles = a.search_author(author)
+print_results(titles)
+
+
+# test isbn search
+# should print a result for the isbn specified at the top of the file.
+a = LibgenSearch()
+print("\n>>>\tSearching for ISBN: " + isbn)
+
+titles = a.search_isbn(isbn)
 print_results(titles)
 
 
@@ -69,6 +79,22 @@ print(
 )
 
 titles = af.search_author_filtered(author, author_filters, exact_match=True)
+print_results(titles)
+
+
+# test isbn filtering
+# should print a result for the isbn specified at the top of the file,
+# conforming to the title_filters below.
+af = LibgenSearch()
+isbn_filters = {"Language": "French", "Year": "1987"}
+print(
+    "\n>>>\tSearching for ISBN: "
+    + isbn
+    + " with filters --- "
+    + ", ".join([":".join(i) for i in isbn_filters.items()])
+)
+
+titles = af.search_isbn_filtered(isbn, isbn_filters, exact_match=True)
 print_results(titles)
 
 

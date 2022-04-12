@@ -83,6 +83,17 @@ results = s.search_author("Jane Austen")
 print(results)
 ```
 
+### ISBN:
+
+```python
+# search_isbn()
+
+from libgen_api import LibgenSearch
+s = LibgenSearch()
+results = s.search_isbn("1503290565")
+print(results)
+```
+
 ## Filtered Searching
 
 Skip to the [Examples](#filtered-title-searching)
