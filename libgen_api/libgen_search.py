@@ -69,12 +69,13 @@ def filter_results(results, filters, exact_match):
 
             # case 1: list filter
             if isinstance(field_filter, list):
-                field_filter_list = field_filter
-                filtered_results = any({get_match_bln(field_filter, result[field], exact_match) for field_filter in field_filter_list})
+                field_filters = field_filter
+                any_matches = any({get_match_bln(filter, result[field], exact_match) for filter in field_filters})
+                filtered_results.extend(any_matches)
 
             # case 2: str filter
             elif isinstance(field_filter, str):
-                filtered_results = get_match_bln(field_filter, result[field], exact_match)
+                filtered_results.extend(get_match_bln(field_filter, result[field], exact_match))
 
             # break if result found
             if filtered_results:
