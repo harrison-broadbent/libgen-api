@@ -40,48 +40,6 @@ class LibgenSearch:
         return download_links
 
 
-# def filter_results(results, filters, exact_match):
-#     """
-#     Returns a list of results that match the given filter criteria.
-#     When exact_match = true, we only include results that exactly match
-#     the filters (ie. the filters are an exact subset of the result).
-
-#     When exact-match = false,
-#     we run a case-insensitive check between each filter field and each result.
-
-#     exact_match defaults to TRUE -
-#     this is to maintain consistency with older versions of this library.
-#     """
-#     filtered_list = []
-#     filter_matches_result = False
-#     for result in results:
-#         for field, query in filters.items():
-#             if exact_match:
-#                 if result[field] in query:
-#                     filter_matches_result = True
-#                 else:
-#                     filter_matches_result = False
-#                     break
-#             else:
-#                 if type(query) is list:
-#                     for item in query:
-#                         if item.casefold() in result[field].casefold():
-#                             filter_matches_result = True
-#                             break
-#                         if not filter_matches_result:
-#                             break
-#                 elif (
-#                     type(query) is str and query.casefold() in result[field].casefold()
-#                 ):
-#                     filter_matches_result = True
-#                 else:
-#                     filter_matches_result = False
-#                     break
-#         if filter_matches_result:
-#             filtered_list.append(result)
-
-#     return filtered_list
-
 def filter_results(results, filters, exact_match):
     """
     Returns a list of results that match the given filter criteria.
