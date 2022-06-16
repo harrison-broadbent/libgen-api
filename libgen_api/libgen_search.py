@@ -71,7 +71,7 @@ def filter_results(results, filters, exact_match):
             if isinstance(field_filter, list):
                 filter_list = field_filter
                 args = (result[field], exact_match)
-                any_matches = any({get_match_bln(filter, *args) for field_filter in filter_list})
+                any_matches = any({get_match_bln(field_filter, *args) for field_filter in filter_list})
                 filtered_results.extend(any_matches)
 
             # case 2: str filter
