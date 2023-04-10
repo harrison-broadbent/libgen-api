@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import urllib.parse
 
 # WHY
 # The SearchRequest module contains all the internal logic for the library.
@@ -56,6 +57,19 @@ class SearchRequest:
         search_page = requests.get(search_url)
         return search_page
 
+
+    def add_direct_download_links(self, output_data):
+        # Add a direct download link to each result
+        for book in output_data:
+            id = book["ID"]
+            download_id = str(id)[:-3] + "000"
+            md5 = book["Mirror_1"].split("/")[-1].lower()
+            title = urllib.parse.quote(book["Title"])
+            extension = book["Extension"]
+            book['Direct_Download_Link'] = f"http://62.182.86.140/main/{download_id}/{md5}/{title}.{extension}"
+
+        return output_data
+
     def aggregate_request_data(self):
         search_page = self.get_search_page()
         soup = BeautifulSoup(search_page.text, "lxml")
@@ -84,4 +98,7 @@ class SearchRequest:
         ]
 
         output_data = [dict(zip(self.col_names, row)) for row in raw_data]
+
+        output_data = self.add_direct_download_links(output_data)
+
         return output_data
