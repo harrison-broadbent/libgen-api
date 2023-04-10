@@ -66,7 +66,7 @@ class SearchRequest:
             md5 = book["Mirror_1"].split("/")[-1].lower()
             title = urllib.parse.quote(book["Title"])
             extension = book["Extension"]
-            book['Direct_Download_Link'] = f"http://62.182.86.140/main/{download_id}/{md5}/{title}.{extension}"
+            book['Direct_Download'] = f"http://62.182.86.140/main/{download_id}/{md5}/{title}.{extension}"
 
         return output_data
 
