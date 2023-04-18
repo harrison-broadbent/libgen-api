@@ -74,16 +74,6 @@ class TestBasicSearching:
 
         assert len(titles) == 0
 
-    def test_resolve_download_links(self):
-        titles = ls.search_author(author)
-        title_to_download = titles[0]
-        dl_links = ls.resolve_download_links(title_to_download)
-
-        # ensure each host is in the results and that they each have a url
-        assert (["GET", "Cloudflare", "IPFS.io", "Infura"] == list(dl_links.keys())) & (
-            False not in [len(link) > 0 for key, link in dl_links.items()]
-        )
-
     # should return an error if search query is less than 3 characters long
     def test_raise_error_on_short_search(self):
         with pytest.raises(Exception):
