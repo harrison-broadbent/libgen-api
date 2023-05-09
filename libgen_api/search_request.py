@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import urllib.parse
+import json
 
 # WHY
 # The SearchRequest module contains all the internal logic for the library.
@@ -48,11 +49,11 @@ class SearchRequest:
         query_parsed = "%20".join(self.query.split(" "))
         if self.search_type.lower() == "title":
             search_url = (
-                f"http://gen.lib.rus.ec/search.php?req={query_parsed}&column=title"
+                f"http://libgen.is/search.php?req={query_parsed}&column=title"
             )
         elif self.search_type.lower() == "author":
             search_url = (
-                f"http://gen.lib.rus.ec/search.php?req={query_parsed}&column=author"
+                f"http://libgen.is/search.php?req={query_parsed}&column=author"
             )
         search_page = requests.get(search_url)
         return search_page
@@ -69,7 +70,23 @@ class SearchRequest:
             book['Direct_Download'] = f"http://62.182.86.140/main/{download_id}/{md5}/{title}.{extension}"
 
         return output_data
+    
+    def add_book_cover_links(self, output_data):
+        
+        ids = ','.join([book['ID'] for book in output_data])
+        
+        url = f"https://libgen.is/json.php?ids={ids}&fields=id,md5,openlibraryid"
 
+        response = json.loads(requests.get(url).text)
+
+        # match openlibraryid to id
+        for book in output_data:
+            for book_json in response:
+                if book['ID'] == book_json['id']:
+                    book['Cover'] = f"https://covers.openlibrary.org/b/olid/{book_json['openlibraryid']}-M.jpg"
+
+        return output_data
+    
     def aggregate_request_data(self):
         search_page = self.get_search_page()
         soup = BeautifulSoup(search_page.text, "lxml")
@@ -100,5 +117,7 @@ class SearchRequest:
         output_data = [dict(zip(self.col_names, row)) for row in raw_data]
 
         output_data = self.add_direct_download_links(output_data)
+
+        output_data = self.add_book_cover_links(output_data)
 
         return output_data
