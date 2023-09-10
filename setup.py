@@ -11,7 +11,6 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     url="https://github.com/harrison-broadbent/libgen-api",
-    download_url="https://github.com/harrison-broadbent/libgen-api/archive/v1.0.0.tar.gz",
     author="Harrison Broadbent",
     author_email="mail@harrisonbroadbent.com",
     license="MIT",
