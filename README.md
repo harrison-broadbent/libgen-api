@@ -256,3 +256,12 @@ Thanks to the following contributors -
 
 - [calmoo](https://github.com/calmoo)
 - [HENRYMARTIN5](https://github.com/HENRYMARTIN5)
+
+## New Distribution
+
+(for my own reference)
+
+1. python3 -m pip install --user --upgrade setuptools wheel
+2. python3 -m pip install --user --upgrade twine
+3. python3 setup.py sdist bdist_wheel
+4. python3 -m twine upload dist/\*
