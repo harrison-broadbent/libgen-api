@@ -2,7 +2,7 @@ from .search_request import SearchRequest
 import requests
 from bs4 import BeautifulSoup
 
-MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Infura"]
+MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Pinata"]
 
 
 class LibgenSearch:
