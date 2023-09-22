@@ -1,17 +1,16 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", errors="replace") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="libgen_api",
     packages=["libgen_api"],
-    version="1.0.0",
+    version="1.0.1",
     description="Search Library genesis by Title or Author",
     long_description_content_type="text/markdown",
     long_description=long_description,
     url="https://github.com/harrison-broadbent/libgen-api",
-    download_url="https://github.com/harrison-broadbent/libgen-api/archive/v1.0.0.tar.gz",
     author="Harrison Broadbent",
     author_email="mail@harrisonbroadbent.com",
     license="MIT",
