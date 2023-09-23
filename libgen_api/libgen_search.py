@@ -1,6 +1,7 @@
-from .search_request import SearchRequest
 import requests
 from bs4 import BeautifulSoup
+
+from .search_request import SearchRequest
 
 MIRROR_SOURCES = ["GET", "Cloudflare", "IPFS.io", "Infura"]
 
@@ -52,22 +53,42 @@ def filter_results(results, filters, exact_match):
     this is to maintain consistency with older versions of this library.
     """
 
-    filtered_list = []
-    if exact_match:
-        for result in results:
-            # check whether a candidate result matches the given filters
-            if filters.items() <= result.items():
-                filtered_list.append(result)
+    # helper func 1
+    def get_match_bln(field_filter, result_field, exact_match):
+        match_bln = False
+        if not exact_match:
+            match_bln = field_filter.casefold() in result_field.casefold()
+        else:
+            match_bln = field_filter == result_field
+        return match_bln
 
-    else:
-        filter_matches_result = False
-        for result in results:
-            for field, query in filters.items():
-                if query.casefold() in result[field].casefold():
-                    filter_matches_result = True
-                else:
-                    filter_matches_result = False
-                    break
-            if filter_matches_result:
-                filtered_list.append(result)
+    # helper func 2
+    def get_filtered_result(result, filters, exact_match):
+        filtered_results = []
+        for field, field_filter in filters.items():
+
+            # case 1: list filter
+            if isinstance(field_filter, list):
+                filter_list = field_filter
+                args = (result[field], exact_match)
+                any_matches = any({get_match_bln(field_filter, *args) for field_filter in filter_list})
+                filtered_results.append(any_matches)
+
+            # case 2: str filter
+            elif isinstance(field_filter, str):
+                any_matches = get_match_bln(field_filter, result[field], exact_match)
+                filtered_results.append(any_matches)
+
+            # break if result found
+            if filtered_results:
+                break
+
+        return any(filtered_results)
+
+    # body
+    filtered_list = []
+    for result in results:
+        if get_filtered_result(result, filters, exact_match):
+            filtered_list.append(result)
+
     return filtered_list
