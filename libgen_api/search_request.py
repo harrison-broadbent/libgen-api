@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 # WHY
 # The SearchRequest module contains all the internal logic for the library.
@@ -41,7 +42,10 @@ class SearchRequest:
     def strip_i_tag_from_soup(self, soup):
         subheadings = soup.find_all("i")
         for subheading in subheadings:
-            subheading.decompose()
+            text = subheading.text.strip()
+            # Check if text resembles an ISBN pattern
+            if not re.match(r'^[\d\-X,\s]+$', text):
+                subheading.decompose()
 
     def get_search_page(self):
         query_parsed = "%20".join(self.query.split(" "))
