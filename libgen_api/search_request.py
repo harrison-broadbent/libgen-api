@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 
 # WHY
 # The SearchRequest module contains all the internal logic for the library.
@@ -42,10 +41,7 @@ class SearchRequest:
     def strip_i_tag_from_soup(self, soup):
         subheadings = soup.find_all("i")
         for subheading in subheadings:
-            text = subheading.text.strip()
-            # Check if text resembles an ISBN pattern
-            if not re.match(r'^[\d\-X,\s]+$', text):
-                subheading.decompose()
+            subheading.decompose()
 
     def get_search_page(self):
         query_parsed = "%20".join(self.query.split(" "))
@@ -65,8 +61,14 @@ class SearchRequest:
         soup = BeautifulSoup(search_page.text, "lxml")
         self.strip_i_tag_from_soup(soup)
 
+        # Libgen results contain 3 tables
+        # Table2: Table of data to scrape.
         information_table = soup.find_all("table")[2]
 
+        # Determines whether the link url (for the mirror)
+        # or link text (for the title) should be preserved.
+        # Both the book title and mirror links have a "title" attribute,
+        # but only the mirror links have it filled.(title vs title="libgen.io")
         raw_data = [
             [
                 td.a["href"]
@@ -76,14 +78,10 @@ class SearchRequest:
                 else "".join(td.stripped_strings)
                 for td in row.find_all("td")
             ]
-            for row in information_table.find_all("tr")[1:]
+            for row in information_table.find_all("tr")[
+                1:
+            ]  # Skip row 0 as it is the headings row
         ]
 
-        output_data = []
-        for row in raw_data:
-            title = row[2]
-            title = self.insert_space_before_digit(title)
-            row[2] = title
-            output_data.append(dict(zip(self.col_names, row)))
-
+        output_data = [dict(zip(self.col_names, row)) for row in raw_data]
         return output_data
