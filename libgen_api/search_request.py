@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 # WHY
 # The SearchRequest module contains all the internal logic for the library.
@@ -41,7 +42,10 @@ class SearchRequest:
     def strip_i_tag_from_soup(self, soup):
         subheadings = soup.find_all("i")
         for subheading in subheadings:
-            subheading.decompose()
+            text = subheading.text.strip()
+            # Check if text resembles an ISBN pattern
+            if not re.match(r'^[\d\-X,\s]+$', text):
+                subheading.decompose()
 
     def get_search_page(self):
         query_parsed = "%20".join(self.query.split(" "))
@@ -56,6 +60,13 @@ class SearchRequest:
         search_page = requests.get(search_url)
         return search_page
 
+    def insert_space_before_digit(self, title):
+        for i, char in enumerate(title):
+            if char.isdigit():
+                title = title[:i] + ' | ' + title[i:]
+                break
+        return title
+    
     def aggregate_request_data(self):
         search_page = self.get_search_page()
         soup = BeautifulSoup(search_page.text, "lxml")
@@ -82,6 +93,12 @@ class SearchRequest:
                 1:
             ]  # Skip row 0 as it is the headings row
         ]
+        output_data = []
+        for row in raw_data:
+            title = row[2]
+            title = self.insert_space_before_digit(title)
+            row[2] = title
+            output_data.append(dict(zip(self.col_names, row)))
 
         output_data = [dict(zip(self.col_names, row)) for row in raw_data]
         return output_data
